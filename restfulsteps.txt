@@ -1,0 +1,7 @@
+1.start apache in xampp
+2. check where it is workingh http://localhost:8080/dashboard/
+3. create a folder in htdocs.
+4. access it from browser
+5. create a new file web.php and save in the htdocs folder created.
+in browser: http://localhost:8080/api/web.php
+download postman
