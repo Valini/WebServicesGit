@@ -1,0 +1,7 @@
+<methodCall><methodName>jac.echoInt</methodName>
+<params>
+<param>
+<value><int>123</int></value> 
+</param>
+</params>
+</methodCall>
