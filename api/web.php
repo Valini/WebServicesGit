@@ -19,26 +19,28 @@ if(isset($_GET['id'])){
 foreach($people as $item){
   //if our get id is same at the id in the array
 if($_GET['id']==$item['id']){
-//  $links = array("ref"=>"self", "href"=>"localhost:8080/api/web.php");
 $user_found=true;
-  $json_people= json_encode(array(
-    "Person"=>$item,
-    "Links"=>create_links('id='.$_GET['id'])), 200
+  //$json_people= json_encode(array(
+  //  "Person"=>$item,
+  //  "Links"=>create_links('id='.$_GET['id'])), 200
+//  );
 
-  );
-
+response(array("Person"=>$item, "Links"=>create_links('id='.$_GET['id']))
+          );
 }
-}
+}//end of for each
 
 if(!$user_found){
 //if user if not found, send an error
-$json_people=json_encode(
-array("Error"=>"User was not found",
-      "Links"=>create_links('id='.$_GET['id'])),400
-    );
-
-
-
+////$json_people=json_encode(
+//array("Error"=>"User was not found",
+    //  "Links"=>create_links('id='.$_GET['id'])),400
+  //  );
+  response(
+          array("Error"=>"User was not found",
+                "Links"=>create_links('id='.$_GET['id']) )
+          ,400
+        );
 }
 }else{
 //return list of all users
@@ -48,27 +50,26 @@ array("Error"=>"User was not found",
 //$json_people= json_encode(array(
 //  "people"=>$people,
 //  "Links"=>create_links()
-
+response(
+      array("People"=>$people, "Links"=>create_links())
+    );
 
 
 }//endif get user id
 
-response(
-  array("People"=>"$people",
-"Links"=>create_links('id='.$_GET['id']))
-);
+
 
 
 //$json_people=json_encode($people);
 
 //change the format of the document we are sending to JSON type
-header("Content-Type:application/json");
-echo $json_people;
+//header("Content-Type:application/json");
+//echo $json_people;
 
 }else{
 
 //not GET, return error
-echo " not ok";
+echo " error";
 
 
 }
