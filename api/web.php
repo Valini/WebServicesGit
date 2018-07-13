@@ -1,5 +1,4 @@
-<h1>Welcome to RestFul<h1>
-  <?php
+<?php
   require_once("functions.php");
 //check for get method
 if($_SERVER['REQUEST_METHOD']=="GET"){
@@ -29,7 +28,7 @@ response(array("Person"=>$item, "Links"=>create_links('id='.$_GET['id']))
           );
 }
 }//end of for each
-
+//if user not exist
 if(!$user_found){
 //if user if not found, send an error
 ////$json_people=json_encode(
@@ -43,7 +42,7 @@ if(!$user_found){
         );
 }
 }else{
-//return list of all users
+//return list of all users if user was not specified
 //build an array of arrays
 //$links = array("ref"=>"self", "href"=>"localhost:8080/api/web.php");
 
@@ -69,9 +68,10 @@ response(
 }else{
 
 //not GET, return error
-echo " error";
+//echo " error";
+response(array("Error"=> "Method not found", "links"=>create_links() ), 405 );
 
 
 }
 
-  ?>
+?>

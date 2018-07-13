@@ -5,3 +5,6 @@
 5. create a new file web.php and save in the htdocs folder created.
 in browser: http://localhost:8080/api/web.php
 download postman
+
+http://dummy.restapiexample.com/
+http://petstore.swagger.io/#/
