@@ -1,22 +1,34 @@
 <?php
-header("Content-Type:application/json");
-//setting up variables
+//https://msdn.microsoft.com/en-us/library/hh441726.aspx
+
+//header("Content-Type:application/json");
+//setup variables for requests
 $api_key="AjDvdPcUrSfJfrA73THbzgQimIgKmNp1u4Q1GAq1TQKcEEVsGU_zn0BaJllRMkhm";
-$mapArea="37";
-$includeLocations="-105";
-$severity="45";
-$type="-94";
+$mapArea="-73.9722,45.4065,-73.536,45.5121";
+$includeLocations="";
+$severity="2,3,4";
+$type="2,9";
 
 $url_structured="http://dev.virtualearth.net/REST/v1/Traffic/Incidents/"
-.$mapArea.','
-.$includeLocations.','
-.$severity.','
-.$type.'?'
-."key=".$api_key
+.$mapArea.'/'
+.$includeLocations.'/'
+.$severity.'/'
+.$type."?"
+."key=".$api_key;
 
+$url_structured1="http://dev.virtualearth.net/REST/v1/Traffic/Incidents/"
+.$mapArea.'?'
+//.$includeLocations.'/'
+//.$severity.'/'
+//.$type."?"
+."key=".$api_key;
+
+/*http://dev.virtualearth.net/REST/v1/Traffic/Incidents/
+37,-105,45,-94?
+key=YourBingMapsKey*/
 
 //set a variable curl handler to fetch the information from this url
-$ch=curl_init($url_structured);
+$ch=curl_init($url_structured1);
 //prevent automatic output to screen
 curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 
@@ -24,7 +36,10 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 $results = curl_exec($ch);
 curl_close($ch);
 $data=json_decode($results);
-$cp=$data->resources[0]->resources[0]->point->resources;
+print_r($data); //print out of the object
+$cp = $data->resourceSets[0]->resources[0]->point->coordinates;
+
+print_r($cp);
 
 
 
@@ -38,11 +53,9 @@ $cp=$data->resources[0]->resources[0]->point->resources;
 </head>
 <body>
   <div>
-     <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=45.40827556878788~-73.9424036717517&lvl=14&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
-     </iframe>
-     <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
-        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=45.40827556878788~-73.9424036717517&amp;sty=r&amp;lvl=14&amp;FORM=MBEDLD">View Larger Map</a> &nbsp; | &nbsp;
-        <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=45.40827556878788~-73.9424036717517&amp;sty=r&amp;lvl=14&amp;rtp=~pos.45.40827556878788_-73.9424036717517____&amp;FORM=MBEDLD">Get Directions</a>
+    <iframe width="500" height="400" frameborder="0"
+    src="https://www.bing.com/maps/embed?h=400&w=500&cp=<?= $cp[0]; ?>~<?= $cp[1]; ?>&lvl=15&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+    </iframe>
     </div>
 </div>
 </body>
