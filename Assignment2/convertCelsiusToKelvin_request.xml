@@ -1,0 +1,10 @@
+<?xml version = "1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope/"
+  soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
+  <!--omitted Header -->
+  <soap:Body xmlns:steph="http://stephmoreau.ca/JAC/soap">
+    <steph:convertCelsiusToKelvin>
+      <steph:celsius>24.0</steph:celsius>
+    </steph:convertCelsiusToKelvin>
+  </soap:Body>
+</soap:Envelope>
