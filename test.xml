@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<soap:Envelope
+soap:xmlns="http://www.w3.org/2003/05/soap-envelope/"
+soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
+<soap:Header>
+</soap:Header>
+<soap:Body xmlns:steph="http://www.step.ca/JAC">
+  <steph:getStockPrice>
+    <steph:stockName>Apple</steph:stockName>
+  </steph:getStockPrice>
+</soap:Body>
+</soap:Envelope>
+
+<?xml version="1.0" ?>
+<soap:Envelope
+soap:xmlns="http://www.w3.org/2003/05/soap-envelope/"
+soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
+<soap:Header>
+</soap:Header>
+<soap:Body xmlns:steph="http://www.step.ca/JAC">
+  <steph:getStockPriceResponse>
+    <steph:stockPrice>123.4</steph:stockPrice>
+  </steph:getStockPriceResponse>
+</soap:Body>   
+</soap:Envelope>
